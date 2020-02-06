@@ -1,19 +1,15 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h1>Drinking Games</h1>
 
-<!-- {% for pop in pops %}
-    <div class="card">
-        <a href="{% url 'detail' pop.id %}">
-            <div class="card-content">
-                <span class="card-title">{{ pop.name }}</span>
-                <p>Category: {{ pop.category }}</p>
-                <p>Description: {{ pop.description }}</p>
-                <p>Price: ${{ pop.price }}</p>
-            </div>
-        </a>
-    </div> -->
-{% endfor %}
-
-{% endblock %}
+{% for redcup in redcups %}
+<div class="card">
+  <a href="{% url 'detail' redcup.id %}">
+    <div class="card-content">
+      <span class="card-title">{{ redcup.name }}</span>
+      <p>Rules: {{ redcup.rules }}</p>
+      <p>Players: {{ redcup.players }}</p>
+    </div>
+  </a>
+</div>
+{% endfor %} {% endblock %}
