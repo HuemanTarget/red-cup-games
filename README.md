@@ -1,1 +1,1 @@
-# red-cup-games
+# this is our project
