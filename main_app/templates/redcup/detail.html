@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Game Details</h1>
+
+<div class="row">
+  <div class="col s6 col-offset-3">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ redcup.name }}</span>
+        <p>Rules: {{ redcup.rules }}</p>
+        <p>Players: {{ redcup.players }}</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'redcup_update' redcup.id %}">Edit</a>
+        <a href="{% url 'redcup_delete' redcup.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
