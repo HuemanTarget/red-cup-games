@@ -18,4 +18,25 @@
     </div>
   </div>
 </div>
+<div class="col s6">
+    <form action="{% url 'add_comment' redcup.id %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" class="btn" value="Add A Comment">
+      </form>
+  <table class="striped">
+    <thead>
+      <tr><th>Date</th><th>Comment</th></tr>
+    </thead>
+    <tbody>
+      {% for comment in redcup.comment_set.all %}
+        <tr>
+          <td>{{comment.created_date}}</td>
+          <td>{{comment.comment}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
 {% endblock %}

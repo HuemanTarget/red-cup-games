@@ -10,4 +10,5 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     path('redcups/<int:pk>/update/', views.RedcupUpdate.as_view(), name='redcup_update'),
     path('redcups/<int:pk>/delete/', views.RedcupDelete.as_view(), name='redcup_delete'),
+    path('redcups/<int:redcup_id>/add_comment/', views.add_comment, name='add_comment'),
 ]

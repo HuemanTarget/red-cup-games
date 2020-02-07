@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from datetime import datetime
 
 class Redcup(models.Model):
     name = models.CharField(max_length=100)
@@ -13,3 +14,12 @@ class Redcup(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'redcup_id': self.id})
+
+class Comment(models.Model):
+    created_date = models.DateTimeField(default=datetime.now, blank=True)
+    comment = models.CharField(max_length=1000, default="Enter comment here!")
+
+    redcup = models.ForeignKey(Redcup, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comment

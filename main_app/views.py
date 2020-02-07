@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Redcup
 from django.views.generic import ListView, DetailView
+from .forms import CommentForm
 # Define the home view
 
 
@@ -33,7 +34,7 @@ def about(request):
 
 
 def redcups_index(request):
-    # redcups = Redcup.objects.filter(user=request.user)
+    redcups = Redcup.objects.filter(user=request.user)
     redcups = Redcup.objects.all()
     return render(request, 'redcup/index.html', {'redcups': redcups})
 
@@ -49,15 +50,26 @@ class RedcupCreate( CreateView):
 
 
 def redcups_detail(request, redcup_id):
-    redcup = Redcup.objects.get(id=redcup_id)
-    return render(request, 'redcup/detail.html', {
-        'redcup': redcup
-    })
+  redcup = Redcup.objects.get(id=redcup_id)
+  comment_form = CommentForm()
+  return render(request, 'redcup/detail.html', {
+    'redcup': redcup, 'comment_form': comment_form
+  })
 
+def add_comment(request, redcup_id):
+  form = CommentForm(request.POST)
+  if form.is_valid():
+    new_comment = form.save(commit=False)
+    new_comment.redcup_id = redcup_id
+    new_comment.save()
+  return redirect('detail', redcup_id=redcup_id)
+
+# @login_required
 class RedcupUpdate(UpdateView):
     model = Redcup
     fields = '__all__'
 
+# @login_required
 class RedcupDelete(DeleteView):
     model = Redcup
     success_url = '/redcups/'
