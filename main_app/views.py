@@ -39,14 +39,14 @@ def redcups_index(request):
     return render(request, 'redcup/index.html', {'redcups': redcups})
 
 
-class RedcupCreate( CreateView):
+class RedcupCreate(CreateView):
     model = Redcup
-    fields = "__all__"
+    fields = ['name', 'rules', 'players', 'link']
     success_url = '/redcups/'
 
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user
-    #     return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 def redcups_detail(request, redcup_id):
@@ -61,6 +61,9 @@ def add_comment(request, redcup_id):
   if form.is_valid():
     new_comment = form.save(commit=False)
     new_comment.redcup_id = redcup_id
+    instance = form.save(commit=False)
+    instance.user = request.user
+    instance.save()
     new_comment.save()
   return redirect('detail', redcup_id=redcup_id)
 
