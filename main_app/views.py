@@ -60,4 +60,4 @@ class RedcupUpdate(UpdateView):
 
 class RedcupDelete(DeleteView):
     model = Redcup
-    success_url = '/redcup/'
+    success_url = '/redcups/'
