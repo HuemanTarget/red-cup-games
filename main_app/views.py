@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Redcup
+from .models import Redcup, Comment
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm
 # Define the home view
@@ -76,3 +76,13 @@ class RedcupUpdate(UpdateView):
 class RedcupDelete(DeleteView):
     model = Redcup
     success_url = '/redcups/'
+
+    # @login_required
+class CommentUpdate(UpdateView):
+    model = Comment
+    fields = ["comment"]
+
+# @login_required
+class CommentDelete(DeleteView):
+    model = Comment
+    success_url = '/redcups/{redcup_id}'
