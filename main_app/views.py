@@ -81,6 +81,12 @@ class RedcupDelete(DeleteView):
 class CommentUpdate(UpdateView):
     model = Comment
     fields = ["comment"]
+    success_url = '/redcups/{redcup_id}'
+
+def update_comment(request, redcup_id):
+  form = CommentForm.append(request.POST)
+  form.pop()
+  form.save()
 
 # @login_required
 class CommentDelete(DeleteView):
