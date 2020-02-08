@@ -70,7 +70,7 @@ def add_comment(request, redcup_id):
 # @login_required
 class RedcupUpdate(UpdateView):
     model = Redcup
-    fields = '__all__'
+    fields = ['created_date', 'comment']
 
 # @login_required
 class RedcupDelete(DeleteView):
@@ -80,13 +80,10 @@ class RedcupDelete(DeleteView):
     # @login_required
 class CommentUpdate(UpdateView):
     model = Comment
-    fields = ["comment"]
+    fields = ['comment']
     success_url = '/redcups/{redcup_id}'
+    
 
-def update_comment(request, redcup_id):
-  form = CommentForm.append(request.POST)
-  form.pop()
-  form.save()
 
 # @login_required
 class CommentDelete(DeleteView):

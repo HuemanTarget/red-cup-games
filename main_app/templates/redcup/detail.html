@@ -42,18 +42,16 @@
         <td>{{comment.created_date}}</td>
         <td>{{comment.user.username}}</td>
         {% if user.username == redcup.user.username %}
-        <td><form default='hi' action="{% url 'comment_update' redcup.id %}" method="post">
+        <td><form action="{% url 'comment_update' comment.id%}" method="post">
           {{comment.comment}}
           {% csrf_token %}
           {{ comment_form.as_p }}
           <input type="submit" class="btn" value="Update Comment">
         </form></td>
+        <td><a href="{% url 'comment_delete' comment.id %}">Delete</a></td>
         {% else %}
         <td>{{comment.comment}}</td>
         {% endif %}
-        {% if user.username == redcup.user.username %}
-        <td><a href="{% url 'comment_delete' comment.id %}">Delete</a></td>
-      {% endif %}
       {% endfor %}  
       </tr>
 
