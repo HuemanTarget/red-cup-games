@@ -7,42 +7,43 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Redcup, Comment
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm
+
 # Define the home view
 
 
 def signup(request):
-    error_message = ''
-    if request.method == 'POST':
+    error_message = ""
+    if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect("home")
         else:
-            error_message = 'Invalid sign up - try again'
+            error_message = "Invalid sign up - try again"
     form = UserCreationForm()
-    context = {'form': form, 'error_message': error_message}
-    return render(request, 'registration/signup.html', context)
+    context = {"form": form, "error_message": error_message}
+    return render(request, "registration/signup.html", context)
 
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, "home.html")
 
 
 def about(request):
-    return render(request, 'about.html')
+    return render(request, "about.html")
 
 
 def redcups_index(request):
     redcups = Redcup.objects.filter(user=request.user)
     redcups = Redcup.objects.all()
-    return render(request, 'redcup/index.html', {'redcups': redcups})
+    return render(request, "redcup/index.html", {"redcups": redcups})
 
 
 class RedcupCreate(CreateView):
     model = Redcup
-    fields = ['name', 'rules', 'players', 'link']
-    success_url = '/redcups/'
+    fields = ["name", "rules", "players", "link"]
+    success_url = "/redcups/"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -50,42 +51,46 @@ class RedcupCreate(CreateView):
 
 
 def redcups_detail(request, redcup_id):
-  redcup = Redcup.objects.get(id=redcup_id)
-  comment_form = CommentForm()
-  return render(request, 'redcup/detail.html', {
-    'redcup': redcup, 'comment_form': comment_form
-  })
+    redcup = Redcup.objects.get(id=redcup_id)
+    comment_form = CommentForm()
+    return render(
+        request, "redcup/detail.html", {"redcup": redcup, "comment_form": comment_form}
+    )
+
 
 def add_comment(request, redcup_id):
-  form = CommentForm(request.POST)
-  if form.is_valid():
-    new_comment = form.save(commit=False)
-    new_comment.redcup_id = redcup_id
-    instance = form.save(commit=False)
-    instance.user = request.user
-    instance.save()
-    new_comment.save()
-  return redirect('detail', redcup_id=redcup_id)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.redcup_id = redcup_id
+        instance = form.save(commit=False)
+        instance.user = request.user
+        instance.save()
+        new_comment.save()
+    return redirect("detail", redcup_id=redcup_id)
+
 
 # @login_required
 class RedcupUpdate(UpdateView):
     model = Redcup
-    fields = ['created_date', 'comment']
+    fields = "__all__"
+
 
 # @login_required
 class RedcupDelete(DeleteView):
     model = Redcup
-    success_url = '/redcups/'
+    success_url = "/redcups/"
 
     # @login_required
+
+
 class CommentUpdate(UpdateView):
     model = Comment
-    fields = ['comment']
-    success_url = '/redcups/{redcup_id}'
-    
+    fields = ["comment"]
+    success_url = "/redcups/{redcup_id}"
 
 
 # @login_required
 class CommentDelete(DeleteView):
     model = Comment
-    success_url = '/redcups/{redcup_id}'
+    success_url = "/redcups/{redcup_id}"
