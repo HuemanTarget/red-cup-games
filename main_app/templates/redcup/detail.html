@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h1>Game Details</h1>
 
@@ -10,7 +9,10 @@
         <span class="card-title">{{ redcup.name }}</span>
         <p>Rules: {{ redcup.rules }}</p>
         <p>Players: {{ redcup.players }}</p>
-        <p>Link: <a href="{{ redcup.link }}" target="_blank">{{ redcup.link }}</a></p>
+        <p>
+          Link:
+          <a href="{{ redcup.link }}" target="_blank">{{ redcup.link }}</a>
+        </p>
         <p>User: {{ redcup.user.username }}</p>
       </div>
       {% if user.username == redcup.user.username %}
@@ -24,9 +26,8 @@
 </div>
 <div class="col s6">
   <form action="{% url 'add_comment' redcup.id %}" method="post">
-    {% csrf_token %}
-    {{ comment_form.as_p }}
-    <input type="submit" class="btn" value="Add A Comment">
+    {% csrf_token %} {{ comment_form.as_p }}
+    <input type="submit" class="btn" value="Add A Comment" />
   </form>
   <table class="striped">
     <thead>
@@ -42,26 +43,20 @@
         <td>{{comment.created_date}}</td>
         <td>{{comment.user.username}}</td>
         {% if user.username == redcup.user.username %}
-        <td><form action="{% url 'comment_update' comment.id%}" method="post">
-          {{comment.comment}}
-          {% csrf_token %}
-          {{ comment_form.as_p }}
-          <input type="submit" class="btn" value="Update Comment">
-        </form></td>
+        <td>
+          <form action="{% url 'comment_update' comment.id%}" method="post">
+            {{comment.comment}} {% csrf_token %} {{ comment_form.as_p }}</td>
+            <td><input type="submit" class="btn" value="Update Comment" />
+          </form>
+        </td>
         <td><a href="{% url 'comment_delete' comment.id %}">Delete</a></td>
         {% else %}
         <td>{{comment.comment}}</td>
-        {% endif %}
-      {% endfor %}  
+        {% endif %} {% endfor %}
       </tr>
-
     </tbody>
   </table>
 
-  <div class="card-action">
-
-
-
-</div>
+  <div class="card-action"></div>
 </div>
 {% endblock %}
