@@ -4,9 +4,15 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Redcup, Comment
+import uuid
+import boto3
+from .models import Redcup, Comment, Photo
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm
+
+
+S3_BASE_URL = "https://s3-us-west-1.amazonaws.com/"
+BUCKET = "redcupgames"
 
 # Define the home view
 
@@ -56,6 +62,21 @@ def redcups_detail(request, redcup_id):
     return render(
         request, "redcup/detail.html", {"redcup": redcup, "comment_form": comment_form}
     )
+
+
+def add_photo(request, redcup_id):
+    photo_file = request.FILES.get("photo-file", None)
+    if photo_file:
+        s3 = boto3.client("s3")
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind(".") :]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            photo = Photo(url=url, redcup_id=redcup_id)
+            photo.save()
+        except:
+            print("An error occurred uploading file to S3")
+    return redirect("detail", redcup_id=redcup_id)
 
 
 def add_comment(request, redcup_id):
