@@ -1,8 +1,16 @@
-{% extends 'base.html' %}
-{% block content %}
-
-<h1>About Red Cup Games</h1>
+{% extends 'base.html' %} {% block content %}
+<h1>Welcome to Red Cup Games</h1>
+<h2>A place where you can find and share drinking games.</h2>
 <hr />
-<p>Play Some Drinking Games!</p>
-
+<p>Are you over 21?</p>
+<form action="{% url 'signup' %}" method="get">
+  {% csrf_token %}
+  <input type="submit" class="btn" value="Yes" />
+</form>
+<br />
+<a
+  class="btn"
+  href="https://www.fisher-price.com/en-us/shop/age/baby-on-the-way"
+  >I'm under 21</a
+>
 {% endblock %}
