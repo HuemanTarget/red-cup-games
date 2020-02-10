@@ -90,16 +90,18 @@ def add_comment(request, redcup_id):
         new_comment.save()
     return redirect("detail", redcup_id=redcup_id)
 
+
 def index(request):
-    return render(request, 'chat/index.html', {})
+    return render(request, "chat/index.html", {})
+
 
 def room(request, room_name):
-    return render(request, 'chat/room.html', {
-        'room_name': room_name
-    })
+    return render(request, "chat/room.html", {"room_name": room_name})
+
 
 def game(request):
-    return render(request, 'game/game.html', {})
+    return render(request, "game/game.html", {})
+
 
 # @login_required
 class RedcupUpdate(UpdateView):
@@ -112,8 +114,6 @@ class RedcupDelete(DeleteView):
     model = Redcup
     success_url = "/redcups/"
 
-    # @login_required
-
 
 class CommentUpdate(UpdateView):
     model = Comment
@@ -125,6 +125,7 @@ class CommentUpdate(UpdateView):
 class CommentDelete(DeleteView):
     model = Comment
     success_url = "/redcups/{redcup_id}"
+
 
 class PhotoDelete(DeleteView):
     model = Photo
