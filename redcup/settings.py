@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'main_app',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -124,3 +125,13 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/home/'
 
 LOGOUT_REDIRECT_URL = '/home/'
+
+ASGI_APPLICATION = "redcup.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
