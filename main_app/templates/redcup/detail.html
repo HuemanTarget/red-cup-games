@@ -53,7 +53,7 @@
       <tr>
         <td>{{comment.created_date}}</td>
         <td>{{comment.user.username}}</td>
-        {% if user.username == redcup.user.username %}
+        {% if user.username == comment.user.username %}
         <td>
           <form action="{% url 'comment_update' comment.id%}" method="post">
             {{comment.comment}} {% csrf_token %} {{ comment_form.as_p }}</td>

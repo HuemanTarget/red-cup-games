@@ -27,8 +27,9 @@
             </li>
           </ul>
           <ul class="right">
-            <li><a href="{% url 'home' %}">Home</a></li>
             {% if user.is_authenticated %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+
             <li>
               <a href="{% url 'redcups_create' %}">Create A Drinking Game</a>
             </li>
@@ -53,7 +54,11 @@
     </footer>
     <script>
       function myFunction() {
-        var newWin = window.open('/chat/room/', 'example', 'width=550,height=400');
+        var newWin = window.open(
+          "/chat/room/",
+          "example",
+          "width=550,height=400"
+        );
       }
     </script>
   </body>
