@@ -125,3 +125,7 @@ class CommentUpdate(UpdateView):
 class CommentDelete(DeleteView):
     model = Comment
     success_url = "/redcups/{redcup_id}"
+
+class PhotoDelete(DeleteView):
+    model = Photo
+    success_url = "/redcups/{redcup_id}"

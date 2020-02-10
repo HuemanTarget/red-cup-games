@@ -34,7 +34,10 @@
       <input type="file" name="photo-file">
       <br><br>
       <input type="submit" class="btn" value="Upload Photo">
-  </form>
+    </form>
+    <div class="card-action">
+      <a class="btn" href="{% url 'photo_delete' redcup.id %}">Delete Photo</a>
+    </div>
 <div class="col s6">
   <form action="{% url 'add_comment' redcup.id %}" method="post">
     {% csrf_token %} {{ comment_form.as_p }}

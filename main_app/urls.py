@@ -25,6 +25,11 @@ urlpatterns = [
         views.CommentDelete.as_view(),
         name="comment_delete",
     ),
+    path(
+        "redcups/<int:pk>/photodelete/",
+        views.PhotoDelete.as_view(),
+        name="photo_delete",
+    ),
     path("redcups/<int:redcup_id>/add_photo/", views.add_photo, name="add_photo"),
     path("chat/<str:room_name>/", views.room, name="room"),
     path("game/", views.game, name="game"),
