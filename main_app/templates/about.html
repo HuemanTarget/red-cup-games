@@ -1,4 +1,9 @@
 {% extends 'base.html' %} {% block content %}
+{% if user.is_authenticated %}
+<h1>Red Cup Games</h1>
+<hr />
+<p>Drink Hard! Play Hard!</p>
+{% else %}
 <h1>Welcome to Red Cup Games</h1>
 <h2>A place where you can find and share drinking games.</h2>
 <hr />
@@ -13,4 +18,5 @@
   href="https://www.fisher-price.com/en-us/shop/age/baby-on-the-way"
   >I'm under 21</a
 >
+{% endif %}
 {% endblock %}

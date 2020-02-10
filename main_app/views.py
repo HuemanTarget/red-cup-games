@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
 from .models import Redcup, Comment, Photo
+from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm
 
@@ -38,6 +39,7 @@ def home(request):
 
 def about(request):
     return render(request, "about.html")
+
 
 
 def redcups_index(request):
