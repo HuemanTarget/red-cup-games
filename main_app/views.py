@@ -69,6 +69,16 @@ def add_comment(request, redcup_id):
         new_comment.save()
     return redirect("detail", redcup_id=redcup_id)
 
+def index(request):
+    return render(request, 'chat/index.html', {})
+
+def room(request, room_name):
+    return render(request, 'chat/room.html', {
+        'room_name': room_name
+    })
+
+def game(request):
+    return render(request, 'game/game.html', {})
 
 # @login_required
 class RedcupUpdate(UpdateView):

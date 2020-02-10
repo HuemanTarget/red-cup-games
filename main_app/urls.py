@@ -13,5 +13,6 @@ urlpatterns = [
     path('redcups/<int:redcup_id>/add_comment/', views.add_comment, name='add_comment'),
     path('redcups/<int:pk>/commentupdate/', views.CommentUpdate.as_view(), name='comment_update'),
     path('redcups/<int:pk>/commentdelete/', views.CommentDelete.as_view(), name='comment_delete'),
-
+    path('chat/<str:room_name>/', views.room, name='room'),
+    path('game/', views.game, name='game'),
 ]
