@@ -13,3 +13,95 @@ footer.page-footer {
     padding-top: 0;
     text-align: right;
 }
+
+.row {
+    text-align: center;
+    max-width: 800px;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.center, .center-column, .top, .right, .bottom, .left {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.center-column {
+    flex-direction: column;
+}
+
+.top    { align-items:     flex-start; }
+.right  { justify-content: flex-end;   }
+.bottom { align-items:     flex-end;   }
+.left   { justify-content: flex-start; }
+
+.single-spaced, .single-spaced * {
+    line-height: 1;
+}
+
+/* .image {
+    opacity: 0.7;
+    padding-top: 20px;
+} */
+
+.footer {
+    padding-top: 0px;
+    margin-top: 80px;
+}
+.form{
+    width: 100%;
+    border: 3px solid black;
+
+}
+.striped{
+    width: 100%;
+    border: 3px solid black;
+    border-radius: 15px 50px 30px 5px;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero {
+    background: url(https://i.imgur.com/Wl5hxrd.jpg) center / cover;
+}
+
+input {
+    width: 25%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    /* display: inline-block; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 20px;
+  }
+
+  
+input[type=submit]:hover {
+    background-color: rgb(235, 77, 63);
+    color: white;
+    font-size: 20px;
+}
+
+.sign {
+    border-radius: 5px;
+    background: rgba(235, 235, 235, 0.6);
+    padding: 20px;
+    border-radius: 20px;
+    width: 65%;
+    margin: auto;
+}
+
+.label {
+    font-size: 20px;
+}
+
+@media (max-width: 1000px) {
+	.desktop {
+		display: none;
+	}
+}

@@ -1,14 +1,47 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 
-<h1>Sign Up</h1>
+<div class="is-overlay has-text-centered single-spaced" style="top: 50px;">
+  <h1 class="title is-1 has-text-black">SIGN UP</h1>
 
-{% if error_message %}
-<p class="red-text">{{ error_message }}</p>
-{% endif %}
-
+{% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
+<div class="sign">
 <form method="post" action="{% url 'signup' %}">
-  {% csrf_token %} {{ form.as_p }}
-  <input type="submit" class="btn" value="signup" />
+  {% csrf_token %}
+  <!-- <div class="control has-text-centered">
+  {{ form.as_p }}
+  </div> -->
+  <div class="field">
+    {{ form.username.errors }}
+    <label class="label">Username:</label>
+    <div class="control has-text-centered">
+        {{ form.username }}
+        <p>150 Characters or Fewer</p>
+        <p>Letters, Digits, and @ / . / + / _ Only</p>
+      </br>
+    </div>
+  </div>
+  <div class="field">
+    {{ form.username.errors }}
+    <label class="label">Password:</label>
+    <div class="control has-text-centered">
+        {{ form.password1 }}
+        <p>Must Be At Least 8 Characters</p>
+        <p>Can't Be Entirely Numeric</p>
+    </br>
+    </div>
+  </div>
+  <div class="field">
+    {{ form.username.errors }}
+    <label class="label">Password Confirmation:</label>
+    <div class="control has-text-centered">
+        {{ form.password2 }}
+        <p>Enter The Same Password For Verification</p>
+    </div>
+  </div>
+  <input type="submit" class="btn" value="Sign Up">
 </form>
-<br />
-<a class="btn" href="{% url 'login' %}">Already A Member?</a> {% endblock %}
+</div>
+</div>
+
+{% endblock %}

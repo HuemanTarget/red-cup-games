@@ -1,14 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="is-overlay has-text-centered single-spaced" style="top: 50px;">
+    <h1 class="title is-3 has-text-black">SIGN IN</h1>
+    <div class="sign">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="field">
+            {{ form.username.errors }}
+            <label class="label">Username:</label>
+            <div class="control has-text-centered">
+                {{ form.username }}
+            </div>
+        </div>
+        <div class="field">
+            {{ form.password.errors }}
+            <label class="label">Password:</label>
+            <div class="control has-text-centered"></div>
+                {{ form.password }}
+            </div>
+            <input type="submit" class="btn" value="Sign In">
+        </div>
+    </div>
+    </form>
+</div>
 
-<h1>Log In</h1>
 
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn" value="login">
-    <input type="hidden" name="next" value="{{ next }}">
-</form>
-  
 
 {% endblock %}

@@ -1,68 +1,52 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Red Cup Games</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/style.css' %}"
-    />
-  </head>
-  <body>
-    <header class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper">
-          <ul>
-            <li>
-              <a href="/" class="left brand-logo">&nbsp;&nbsp;Red Cup Games</a>
-            </li>
-          </ul>
-          <ul class="right">
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'home' %}">Home</a></li>
-
-            <li>
-              <a href="{% url 'redcups_create' %}">Create A Drinking Game</a>
-            </li>
-            <li><a href="{% url 'index' %}">View All Drinking Games</a></li>
-            <li><a
-              href="http://js-drinking.projects.frank.petril.li/" target="_blank"
-              >JS Drinking Game</a
-            ></li>
-            <button onclick="myFunction()">Chat Room</button>
-            <li><a href="{% url 'logout' %}">{{user.username}}</a></li>
-            {% else %}
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
-            <li><a href="{% url 'login' %}">Log In</a></li>
-            {% endif %}
-          </ul>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Red Cup Games</title>
+		<link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css">
+		<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+        <!-- <link rel="stylesheet" href="styles/debug.css"> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+	</head>
+<body>
+  <section class="hero is-fullheight">
+    <div class="hero-head">
+      <div class="columns is-mobile is-marginless heading has-text-weight-bold is-size-6">
+        <div class="column left">
+          <p class="navbar-item has-text-danger">RED CUP GAMES</p>
         </div>
-      </nav>
-    </header>
+        {% if user.is_authenticated %}
+        <div class="column center desktop">
+          <a class="navbar-item has-text-danger desktop" href="{% url 'home' %}">HOME</a>
+          <a class="navbar-item has-text-danger desktop" href="{% url 'redcups_create' %}">CREATE DRINKING GAME</a>
+          <a class="navbar-item has-text-danger desktop" href="{% url 'index' %}">ALL DRINKING GAMES</a>
+            </div>
+        <div class="column right  ">
+          <button onclick="myFunction()">Chat Room</button>
+          <a class="navbar-item has-text-danger desktop" href="{% url 'logout' %}">{{user.username}}(LOG OUT)</a>
+          {% else %}
+          <a class="navbar-item has-text-danger desktop" href="{% url 'signup' %}">SIGN UP</a>
+          <a class="navbar-item has-text-danger desktop" href="{% url 'login' %}">SIGN IN</a>
+          {% endif %}
+        </div>
+      </div>
     <main class="container">
       {% block content %} {% endblock %}
     </main>
-    <footer class="page-footer">
-      <div class="right">
-        All Rights Reserved, &copy; 2020 Red Cup Games &nbsp;
+    <!-- <footer class="footer has-background-white">
+      <div class="content has-text-danger has-text-centered">
+        <p>
+          All Rights Reserved, &copy; 2020 Red Cup Games &nbsp;
+        </p>
       </div>
-    </footer>
+    </footer> -->
     <script>
       function myFunction() {
-        var newWin = window.open(
-          "/chat/room/",
-          "example",
-          "width=550,height=400"
-        );
+        var newWin = window.open('/chat/room/', 'example', 'width=550,height=400');
       }
     </script>
   </body>
