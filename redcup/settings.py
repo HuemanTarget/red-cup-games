@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+import redis
 import os
 #from .secret import secret
 
@@ -142,6 +142,8 @@ django_heroku.settings(locals())
 CACHES = {
     "default": {
          "BACKEND": "redis_cache.RedisCache",
-         "LOCATION": os.environ.get('REDIS_URL'),
+         "LOCATION": os.environ.get('chat/<str:room_name>/'),
     }
 }
+
+r = redis.from_url(os.environ.get("chat/<str:room_name>/"))
