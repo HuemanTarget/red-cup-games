@@ -1,9 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Drinking Games</h1>
+<h1 class="has-text-centered title is-1 has-text-black">DRINKING GAMES</h1>
 
 {% for redcup in redcups %}
-<div class="card">
+<div class="has-text-centered single-spaced" style="top: 50px;">
+  <div class="sign">
   <a href="{% url 'detail' redcup.id %}">
     <div class="card-content">
       <span class="card-title">{{ redcup.name }}</span>
@@ -12,5 +13,7 @@
       <p>User: {{ redcup.user.username }}</p>
     </div>
   </a>
+</div>
+<br>
 </div>
 {% endfor %} {% endblock %}

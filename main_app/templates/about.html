@@ -1,25 +1,27 @@
 {% extends 'base.html' %} {% block content %}
 {% if user.is_authenticated %}
 
+
 <div class="is-overlay has-text-centered single-spaced" style="top: 60px;">
   <h1 class="title is-1 has-text-danger">RED CUP GAMES</h1>
   <h1 class="title is-3 has-text-danger">PLAY HARD! DRINK HARD!</h1>
 </div>
 
 {% else %}
-<div class="sign">
-<div class="is-overlay has-text-centered single-spaced" style="top: 60px;">
+
+<div class="sign is-overlay has-text-centered single-spaced" style="top: 60px;">
   <h1 class="title is-1 has-text-black">Welcome To Red Cup Games</h1>
   <h2 class="title is-3 has-text-black">A place where you can find and share drinking games.</h2>
 
 <p class="title is-3 has-text-black">Are you over 21?</p>
 <form action="{% url 'signup' %}" method="get">
   {% csrf_token %}
-  <input type="submit" class="button is-success" value="Yes" />
+  <input type="submit" class="btn" value="Yes" />
 </form>
 <br />
+
 <a
-  class="button is-success"
+  class="link"
   href="https://www.fisher-price.com/en-us/shop/age/baby-on-the-way"
   >I'm under 21</a
 >

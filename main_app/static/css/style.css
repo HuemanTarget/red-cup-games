@@ -4,6 +4,10 @@ body {
     flex-direction: column;
     /* background-color: blue; */
 }
+
+a {
+    color: black;
+}
   
 main {
     flex: 1 0 auto;
@@ -94,11 +98,27 @@ input[type=submit]:hover {
     border-radius: 20px;
     width: 65%;
     margin: auto;
+    height: auto;
 }
 
 .label {
     font-size: 20px;
 }
+
+.link {
+    font-size: 20px;
+    color: black;
+    border-radius: 10px;
+}
+
+#id_name, #id_players, #id_link, #id_rules {
+    width: 500px;
+}
+
+#id_username, #id_password, #id_password1, #id_password2 {
+    width: 250px;
+}
+
 
 @media (max-width: 1000px) {
 	.desktop {

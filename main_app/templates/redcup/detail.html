@@ -1,11 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Game Details</h1>
-
+<h1 class="has-text-centered title is-1 has-text-black">GAME DETAILS</h1>
+<div class="has-text-centered single-spaced" style="top: 50px;">
 <div class="row">
-  <div class="col s6 col-offset-3">
-    <div class="card">
-      <div class="card-content">
+  <div class="sign">
+  
         <span class="card-title">{{ redcup.name }}</span>
         <p>Rules: {{ redcup.rules }}</p>
         <p>Players: {{ redcup.players }}</p>
@@ -14,16 +13,16 @@
           <a href="{{ redcup.link }}" target="_blank">{{ redcup.link }}</a>
         </p>
         <p>User: {{ redcup.user.username }}</p>
-      </div>
       {% if user.username == redcup.user.username %}
       <div class="card-action">
         <a href="{% url 'redcup_update' redcup.id %}">Edit</a>
         <a href="{% url 'redcup_delete' redcup.id %}">Delete</a>
       </div>
       {% endif %}
-    </div>
-  </div>
 </div>
+</div>
+</div>
+
 {% for photo in redcup.photo_set.all %}
 
 <div class="card-panel">
