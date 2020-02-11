@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-import redis
+# import redis
+import django_heroku
 import os
-#from .secret import secret
+from secret import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c2z2a^lkugjc%h0*(q$hwb47+vl8r9d)1pa9y1absgsm9ywl!r'
+SECRET_KEY = secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -127,23 +128,22 @@ LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/home/'
 
 ASGI_APPLICATION = "redcup.routing.application"
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        },
-    },
-}
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],
+#         },
+#     },
+# }
 
-import django_heroku
 django_heroku.settings(locals())
 
 CACHES = {
     "default": {
          "BACKEND": "redis_cache.RedisCache",
-         "LOCATION": os.environ.get('chat/<str:room_name>/'),
+         "LOCATION": os.environ.get('redis_key'),
     }
 }
 
-r = redis.from_url(os.environ.get("chat/<str:room_name>/"))
+# r = redis.from_url(os.environ.get("chat/<str:room_name>/"))
