@@ -25,15 +25,18 @@
 
 {% for photo in redcup.photo_set.all %}
 
-<div class="card-panel">
+<h1 class="has-text-centered title is-1 has-text-black">GAME DETAILS</h1>
+<div class="has-text-centered single-spaced" style="top: 50px;">
       <img class="responsive-img card-panel" src="{{photo.url}}">
   {% if user.username == photo.redcup.user.username %}
+  <div class="sign">
       <form action="{% url 'photo_delete' photo.id %}" method="POST">
         {% csrf_token %}
         <input type="submit" class="btn" value="delete">
       </form>
+
   {% endif %}
-    </div>      
+</div>      
     {% empty %}
       <div class="card-panel teal-text center-align">No Photos Uploaded</div>
     {% endfor %}
@@ -43,10 +46,10 @@
       <br><br>
       <input type="submit" class="btn" value="Upload Photo">
     </form>
-
+  </div>
  
     
-<div class="col s6">
+  <div class="has-text-centered single-spaced" style="top: 50px;">
   <form action="{% url 'add_comment' redcup.id %}" method="post">
     {% csrf_token %} {{ comment_form.as_p }}
     <input type="submit" class="btn" value="Add A Comment" />

@@ -138,3 +138,10 @@ CHANNEL_LAYERS = {
 
 import django_heroku
 django_heroku.settings(locals())
+
+CACHES = {
+    "default": {
+         "BACKEND": "redis_cache.RedisCache",
+         "LOCATION": os.environ.get('REDIS_URL'),
+    }
+}
