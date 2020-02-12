@@ -25,6 +25,7 @@
 - REDIS
 - DOCKER
 - AWS
+- BULMA
 
 [Pitch Deck](https://docs.google.com/presentation/d/1Ucam3kqK0lkbewkN8NJCIZ8v4AogWda4oc38H-KNKFs/edit#slide=id.gc6f8954bc_0_164)
 
