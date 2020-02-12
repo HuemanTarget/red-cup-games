@@ -15,7 +15,7 @@ from .forms import CommentForm
 S3_BASE_URL = "https://s3-us-west-1.amazonaws.com/"
 BUCKET = "redcupgames"
 
-# Define the home view
+
 
 
 def signup(request):
@@ -105,13 +105,13 @@ def game(request):
     return render(request, "game/game.html", {})
 
 
-# @login_required
+
 class RedcupUpdate(UpdateView):
     model = Redcup
     fields = "__all__"
 
 
-# @login_required
+
 class RedcupDelete(DeleteView):
     model = Redcup
     success_url = "/redcups/"
@@ -123,7 +123,7 @@ class CommentUpdate(UpdateView):
     success_url = "/redcups/{redcup_id}"
 
 
-# @login_required
+
 class CommentDelete(DeleteView):
     model = Comment
     success_url = "/redcups/{redcup_id}"

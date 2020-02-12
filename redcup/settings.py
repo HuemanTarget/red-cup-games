@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-# import redis
+import redis
 import django_heroku
 import os
 import urllib.parse as urlparse
@@ -129,14 +129,14 @@ LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/home/'
 
 ASGI_APPLICATION = "redcup.routing.application"
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-#         'CONFIG': {
-#             "hosts": [os.environ.get('REDISTOGO_URL')],
-#         },
-#     },
-# }
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [os.environ.get('REDISTOGO_URL')],
+        },
+    },
+}
 redis_url = urlparse.urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6959'))
 
 django_heroku.settings(locals())
@@ -150,11 +150,3 @@ CACHES = {
         }
     }
 }
-# CACHES = {
-#     "default": {
-#          "BACKEND": "redis_cache.RedisCache",
-#          "LOCATION": os.environ.get('redis_key'),
-#     }
-# }
-
-# r = redis.from_url(os.environ.get("chat/<str:room_name>/"))
