@@ -26,7 +26,11 @@
           <a class="navbar-item has-text-danger desktop" href="{% url 'index' %}">ALL DRINKING GAMES</a>
             </div>
         <div class="column right  ">
-          <button onclick="myFunction()">Chat Room</button>
+          <a class="navbar-item has-text-danger desktop" href="https://redcupchat.herokuapp.com/" 
+              target="popup" 
+              onclick="window.open('https://redcupchat.herokuapp.com/','popup','width=600,height=600'); return false;">
+              Chat
+          </a>
           <a class="navbar-item has-text-danger desktop" href="{% url 'logout' %}">{{user.username}}(LOG OUT)</a>
           {% else %}
           <a class="navbar-item has-text-danger desktop" href="{% url 'signup' %}">SIGN UP</a>
@@ -45,9 +49,9 @@
       </div>
     </footer> -->
     <script>
-      function myFunction() {
-        var newWin = window.open('/chat/room/', 'example', 'width=550,height=400');
-      }
+      // function myFunction() {
+      //   var newWin = window.open('https://redcupchat.herokuapp.com/', 'popup', 'width=550,height=400');
+      // }
     </script>
   </body>
 </html>
