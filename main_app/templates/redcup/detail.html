@@ -52,8 +52,9 @@
 </div>
 </div>
 
-<div class="comment">
-  <div class="has-text-centered single-spaced" style="top: 50px;">
+<div class="comment">   
+  <div class="is-pulled-left">
+  <div class="has-text-centered single-spaced" style="top: 50px;"></div>
   <form action="{% url 'add_comment' redcup.id %}" method="post">
     {% csrf_token %} {{ comment_form.as_p }}
     <br><input type="submit" class="btn commentBtn" value="Add A Comment" /><br><br>
@@ -61,9 +62,9 @@
   <table class="striped">
     <thead>
       <tr>
-        <th>Date</th>
-        <th>User</th>
-        <th>Comment</th>
+        <th><u>Date</u></th>
+        <th><u>User</u></th>
+        <th><u>Comment</u></th>
       </tr>
     </thead>
     <tbody>
@@ -74,11 +75,11 @@
         {% if user.username == comment.user.username %}
         <td>
           <form action="{% url 'comment_update' comment.id%}" method="post">
-            {{comment.comment}} {% csrf_token %} {{ comment_form.as_p }}</td>
-            <td><input type="submit" class="btn" value="Update Comment" />
+            {{comment.comment}} {% csrf_token %} {{ comment_form.as_p }}
+            <div class="updateComment"><input type="submit" class="btn" value="Update Comment" /></div>
           </form>
         </td>
-        <td><a href="{% url 'comment_delete' comment.id %}">Delete</a></td>
+        <td><a class="editD" href="{% url 'comment_delete' comment.id %}">Delete</a></td>
         {% else %}
         <td>{{comment.comment}}</td>
         {% endif %} {% endfor %}
