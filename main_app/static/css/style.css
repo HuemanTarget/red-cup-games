@@ -157,7 +157,7 @@ input[type=submit]:hover {
     margin: auto;
     height: auto;
     position:relative;
-    left: 11vw;
+    left: 0vw;
 }
 
 .comment {
