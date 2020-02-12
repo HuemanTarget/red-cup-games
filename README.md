@@ -13,6 +13,7 @@
 - Post their own photos
 - Comment on posts
 - Update their own comments and posts
+- Chat with other Red Cup Games users
 ### Technical Skills Used:
 - HTML
 - CSS
