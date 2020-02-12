@@ -76,10 +76,19 @@ footer.page-footer {
     border: 3px solid black;
 
 }
+
+.commentBtn{
+    display: inline-block;
+  float: left;
+}
+
+label, #id_comment {
+    /* display: inline-block;
+  float: left; */
+}
+
 .striped{
-    width: 100%;
-    border: 3px solid black;
-    border-radius: 15px 50px 30px 5px;
+    width: 102;
 }
 .center {
     display: flex;
@@ -123,6 +132,18 @@ input[type=submit]:hover {
 }
 
 .sign {
+    border-radius: 5px;
+    background: rgba(235, 235, 235, 0.8);
+    padding: 20px;
+    border-radius: 20px;
+    width: 65%;
+    margin: auto;
+    height: auto;
+    position:relative;
+    left: 11vw;
+}
+
+.comment {
     border-radius: 5px;
     background: rgba(235, 235, 235, 0.8);
     padding: 20px;

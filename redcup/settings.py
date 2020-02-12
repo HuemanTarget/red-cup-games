@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 # import redis
 import django_heroku
 import os
-# from secret import *
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -132,7 +132,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('redis://redistogo:c97e196f047c29a722f5c9f0bcd9666a@pike.redistogo.com', 10139)],
+            "hosts": [os.environ.get('REDISTOGO_URL')],
         },
     },
 }

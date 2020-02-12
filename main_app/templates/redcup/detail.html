@@ -51,10 +51,12 @@
   </div>
 </div>
 </div>
+
+<div class="comment">
   <div class="has-text-centered single-spaced" style="top: 50px;">
   <form action="{% url 'add_comment' redcup.id %}" method="post">
     {% csrf_token %} {{ comment_form.as_p }}
-    <input type="submit" class="btn" value="Add A Comment" />
+    <br><input type="submit" class="btn commentBtn" value="Add A Comment" /><br><br>
   </form>
   <table class="striped">
     <thead>
@@ -85,5 +87,6 @@
   </table>
 
   <div class="card-action"></div>
+</div>
 </div>
 {% endblock %}
