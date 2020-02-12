@@ -5,10 +5,21 @@ body {
     /* background-color: blue; */
 }
 
-a {
+.card-title {
+    color: black;
+    font-size: 27px;
+    text-align: left;
+}
+
+a, p {
     color: black;
 }
   
+.editD {
+    text-decoration: underline;
+    text-align: center;
+}
+
 main {
     flex: 1 0 auto;
 }
@@ -17,6 +28,7 @@ footer.page-footer {
     padding-top: 0;
     text-align: right;
 }
+
 
 .row {
     text-align: center;
@@ -35,6 +47,10 @@ footer.page-footer {
     flex-direction: column;
 }
 
+.card-action {
+    word-spacing: 20px;
+}
+
 .top    { align-items:     flex-start; }
 .right  { justify-content: flex-end;   }
 .bottom { align-items:     flex-end;   }
@@ -43,6 +59,8 @@ footer.page-footer {
 .single-spaced, .single-spaced * {
     line-height: 1;
 }
+
+
 
 /* .image {
     opacity: 0.7;
@@ -101,12 +119,12 @@ input {
 input[type=submit]:hover {
     background-color: rgb(235, 77, 63);
     color: white;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 .sign {
     border-radius: 5px;
-    background: rgba(235, 235, 235, 0.6);
+    background: rgba(235, 235, 235, 0.8);
     padding: 20px;
     border-radius: 20px;
     width: 65%;

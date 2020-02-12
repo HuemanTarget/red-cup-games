@@ -1,31 +1,33 @@
 {% extends 'base.html' %} {% block content %}
 
 <h1 class="has-text-centered title is-1 has-text-black">GAME DETAILS</h1>
-<div class="has-text-centered single-spaced" style="top: 50px;">
+<div class="has-text-left single-spaced" style="top: 50px;">
 <div class="row">
   <div class="sign">
   
-        <span class="card-title">{{ redcup.name }}</span>
-        <p>Rules: {{ redcup.rules }}</p>
-        <p>Players: {{ redcup.players }}</p>
+        <span class="card-title">{{ redcup.name }}
+        <p><u> Rules:</u> {{ redcup.rules }}</p>
+        <p><u>Players:</u> {{ redcup.players }}</p>
         <p>
-          Link:
-          <a href="{{ redcup.link }}" target="_blank">{{ redcup.link }}</a>
+          <u>Link:</u>
+          <a href="{{ redcup.link }}" target="_blank">Click Here</a>
         </p>
-        <p>User: {{ redcup.user.username }}</p>
+        <p><u>User:</u> {{ redcup.user.username }}</p></span>
       {% if user.username == redcup.user.username %}
       <div class="card-action">
-        <a href="{% url 'redcup_update' redcup.id %}">Edit</a>
-        <a href="{% url 'redcup_delete' redcup.id %}">Delete</a>
+        <br>
+        <a class="editD" href="{% url 'redcup_update' redcup.id %}">Edit</a>
+
+        <a class="editD" href="{% url 'redcup_delete' redcup.id %}">Delete</a>
       </div>
       {% endif %}
 </div>
 </div>
 </div>
-
+<div class="row">
+<div class="sign">
 {% for photo in redcup.photo_set.all %}
 
-<h1 class="has-text-centered title is-1 has-text-black">GAME DETAILS</h1>
 <div class="has-text-centered single-spaced" style="top: 50px;">
       <img class="responsive-img card-panel" src="{{photo.url}}">
   {% if user.username == photo.redcup.user.username %}
@@ -38,17 +40,17 @@
   {% endif %}
 </div>      
     {% empty %}
-      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+      <div class="card-panel teal-text center-align"></div>
     {% endfor %}
     <form action="{% url 'add_photo' redcup.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
       {% csrf_token %}
-      <input type="file" name="photo-file">
+      <input type="file" style="width: 300px" class="btn" name="photo-file">
       <br><br>
       <input type="submit" class="btn" value="Upload Photo">
     </form>
   </div>
- 
-    
+</div>
+</div>
   <div class="has-text-centered single-spaced" style="top: 50px;">
   <form action="{% url 'add_comment' redcup.id %}" method="post">
     {% csrf_token %} {{ comment_form.as_p }}
