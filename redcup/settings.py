@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 # import redis
 import django_heroku
 import os
+import urllib.parse as urlparse
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -128,17 +129,27 @@ LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/home/'
 
 ASGI_APPLICATION = "redcup.routing.application"
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [os.environ.get('REDISTOGO_URL')],
-        },
-    },
-}
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [os.environ.get('REDISTOGO_URL')],
+#         },
+#     },
+# }
+redis_url = urlparse.urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6959'))
 
 django_heroku.settings(locals())
-
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
+        'OPTIONS': {
+            'DB': 0,
+            'PASSWORD': redis_url.password,
+        }
+    }
+}
 # CACHES = {
 #     "default": {
 #          "BACKEND": "redis_cache.RedisCache",
